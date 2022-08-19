@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Calendar;
+
 public class SeguroCoche extends Poliza {
 	
 	protected String matricula;
@@ -10,7 +12,7 @@ public class SeguroCoche extends Poliza {
 	public SeguroCoche() {
 		super();
 		this.matricula = "";
-		this.anioCarnet = 0;
+		this.anioCarnet = Calendar.getInstance().get(Calendar.YEAR);
 	}
 
 	//constructor
@@ -49,12 +51,23 @@ public class SeguroCoche extends Poliza {
 				+ anioCarnet + "]";
 	}
 
-
-
 	@Override
 	public double calcularPrima() {
-		// TODO Esbozo de método generado automáticamente
-		return 0;
+		int antiguedadSeguro=
+				Calendar.getInstance().get(Calendar.YEAR) - anyo;
+		int antCarnet= 
+				Calendar.getInstance().get(Calendar.YEAR) - anioCarnet;
+		
+		if(antiguedadSeguro>10) {
+			antiguedadSeguro =10;
+		}
+		double primaTotal = primaBase - (primaBase*0.015)*antiguedadSeguro;
+		if(antCarnet<5) {
+			primaTotal = primaTotal + 75;
+		}
+		primaTotal=primaTotal + primaTotal*0.03*numSiniestrosHistorico;
+		
+		return primaTotal;
 	}
 
 }

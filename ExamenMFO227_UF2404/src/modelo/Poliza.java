@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public abstract class Poliza {
@@ -19,7 +20,7 @@ public abstract class Poliza {
 		this.nombre = "";
 		this.apellidos = "";
 		this.dni = "";
-		this.anyo = 2022;
+		this.anyo = Calendar.getInstance().get(Calendar.YEAR);
 		this.formaPago = "Anual";
 		this.numSiniestrosHistorico = 0;
 		
